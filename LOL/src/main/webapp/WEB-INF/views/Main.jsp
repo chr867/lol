@@ -5,16 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-</head>
-<script src="https://code.jquery.com/jquery-3.6.3.js"
-	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-	crossorigin="anonymous"></script>
-	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
 <style>
-a{
-text
-}
 
  .category div{
  	float: left;
@@ -28,8 +21,12 @@ text
  
  </style>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+	crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 	<hr>
 	<!-- On tables -->
 	<div id="table_chart">
@@ -48,7 +45,7 @@ text
 	</div>
 
 
-		<table class="table-primary">
+		<table class="table table-hover">
 
 		</table>
 		<!-- <span class="title">통계</span>
@@ -78,8 +75,8 @@ $('.table-primary td')
 			let i = 1;
 			for(champion of res){
 				cList += '<tr id='+champion.cid+' height="20" align="center">'
-				cList += '<th align="center">'+i+'</td>'
-				cList += '<img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#">'
+				cList += '<th align="center">'+i+'</th>'
+				cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 				cList += '<td align="center">'+champion.cn_kr+'</td>'
 				cList += '<td align="center">'+champion.winrate+'</td>'
 				cList += '<td align="center">'+champion.pickrate+'</td>'
@@ -87,7 +84,7 @@ $('.table-primary td')
 				i++;
 			}
 			cList+='</tbody>';
-			$('.table-primary').html(cList);
+			$('.table').html(cList);
 		})
 		
 </script>

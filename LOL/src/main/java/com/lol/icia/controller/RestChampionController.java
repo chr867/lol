@@ -16,18 +16,14 @@ public class RestChampionController {
 	
 	@GetMapping("/getinfo")
 	public List<Champion> main (String lane) {
+		System.out.println("lane: "+lane);
 		List<Champion> c_info = CM.get_champion_info(lane);
-		for(int i=0;i<c_info.size();i++) {
-			if(c_info.get(i).getPick_rate()<=0.5) {
-				c_info.remove(i);
-			}
-		}
 		return c_info;
 	}
 	
 	@GetMapping("/getdetail")
-	public Champion detail (String cn_kr,String lane) {
-		Champion c=CM.get_champion_detail_info(cn_kr,lane);
+	public Champion detail (String cn_id,String lane) {
+		Champion c=CM.get_champion_detail_info(cn_id,lane);
 		return c;
 	}
 }

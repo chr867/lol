@@ -4,11 +4,19 @@
 
 <!-- 1. parameterType 1번만 사용, 생략가능 -->
 <!-- 2. select태그만 resultType 명시 해야함. -->
-<!-- 3. #{변수},#{필드명},#{key} : 문자열 일 때 '' 를 포함 -->
+<!-- 3. ${변수},${필드명},${key} : 문자열 일 때 '' 를 포함 -->
 <!-- 3.2 ${변수},${필드명},${key} : 문자열 일 때 '' 없이 -->
 <!-- 4. 리스트 반환시 리스트요소 타입만 명시 -->
 <!-- IBoardDao 전용 Mapper: 게시판관련 sql -->
 <mapper namespace="com.lol.icia.dao.LolDao">
+
+	<select id="get_champion_info" resultType="champion">
+		SELECT ${lane}_wpk.CID, ${lane}_wpk.CN_EG, ${lane}_wpk.CN_KR, ${lane}_wpk.winrate, ${lane}_wpk.pickrate, ${lane}.kda
+		FROM ${lane}_wpk join ${lane}kda ${lane}
+		ON ${lane}_wpk.CN_KR = ${lane}.CN_KR
+		ORDER BY ${lane}_wpk.pickrate desc
+	</select>
+	
 
 
 </mapper>

@@ -15,10 +15,7 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<!-- front 리소스 위치: webapp아래 resources 폴더 -->
-	<resources mapping="/resources/**" location="/resources/" />
 	 
-	 <!-- webapp폴더에 직접 js, css, upload 등 리소스 저장 가능 -->
 	<!-- <default-servlet-handler/> -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -27,12 +24,5 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.lol.icia.*" />
-	<!-- Tx 설정: root-context.xml도 설정 가능 -->
-	<beans:bean id="tx_manager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<beans:property name="dataSource" ref="dataSource"/>
-	</beans:bean>
-	
-	<!-- @Transactional 어노테이션 사용하기 위한 설정, 반드시 servlet-context.xml에 설정 -->
-	<tx:annotation-driven transaction-manager="tx_manager"  />	
 	
 </beans:beans>

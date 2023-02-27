@@ -10,9 +10,10 @@ import lombok.experimental.Accessors;
 @Alias ("champion")
 
 public class Champion {
+	int cid;
 	String cn_eg;
 	String cn_kr;
-	double win_rate;
-	double pick_rate;
+	double winrate;
+	double pickrate;
 	double kda;
 }

@@ -13,5 +13,4 @@ public interface LolDao {
 
 	Champion get_champion_detail_info(String cn_kr, String lane);
 	
-	
 }

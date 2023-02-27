@@ -17,6 +17,11 @@
 		ORDER BY ${lane}_wpk.pickrate desc
 	</select>
 	
+	<select id="get_champion_detail_info" resultType="champion">
+		SELECT * FROM t_wpk
+		WHERE CID = ${cid}
+	</select>
+	
 
 
 </mapper>

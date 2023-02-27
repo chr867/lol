@@ -7,26 +7,20 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
-<style>
 
- .category div{
- 	float: left;
- 	padding: 5px;
- }
- 
- td{
- margin: 10px;
- padding: 10px;
- }
- 
+<style>
+table th,td{
+	line-height: 120px;
+	width : 200px;
+}
  </style>
 <body>
 <script src="https://code.jquery.com/jquery-3.6.3.js"
 	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 	crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 	<hr>
 	<!-- On tables -->
 	<div id="table_chart">
@@ -63,18 +57,21 @@
 
 
 <script type="text/javascript">
-$('.table-primary td')
 
-		$.ajax({
-			method : 'get',
-			url : '/getinfo',
-			data : {lane:'t'}
+	$('tr').click(function(){
+		console.log(this)
+	})
+
+	$.ajax({
+		method : 'get',
+		url : '/getinfo',
+		data : {lane:'t'}
 		}).done(res=>{
 			console.log(res)
 			let cList='<tbody>';
 			let i = 1;
 			for(champion of res){
-				cList += '<tr id='+champion.cid+' height="20" align="center">'
+				cList += '<tr height="20" align="center" onclick="location.href=/detail?'+cid=champion.cid+'">'
 				cList += '<th align="center">'+i+'</th>'
 				cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 				cList += '<td align="center">'+champion.cn_kr+'</td>'

@@ -11,6 +11,8 @@ public interface LolDao {
 	
 	List<Champion> get_champion_info(String lane);
 
-	Champion get_champion_detail_info(String cn_kr, String lane);
+//	Champion get_champion_detail_info(int cid, String lane);
+
+	Champion get_champion_detail_info(int cid);
 	
 }

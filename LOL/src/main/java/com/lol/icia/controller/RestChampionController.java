@@ -21,9 +21,9 @@ public class RestChampionController {
 		return c_info;
 	}
 	
-	@GetMapping("/getdetail")
-	public Champion detail (String cn_id,String lane) {
-		Champion c=CM.get_champion_detail_info(cn_id,lane);
-		return c;
-	}
+//	@GetMapping("/getdetail")
+//	public Champion detail (int cid,String lane) {
+//		Champion c=CM.get_champion_detail_info(cid,lane);
+//		return c;
+//	}
 }

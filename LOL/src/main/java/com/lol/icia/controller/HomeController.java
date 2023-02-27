@@ -20,9 +20,12 @@ public class HomeController {
 	}
 	
 	@GetMapping("/detail")
-	public String details(String cn_kr,String lane, RedirectAttributes attr) {
-		attr.addAttribute("cn_kr",cn_kr);
-		attr.addAttribute("lane",lane);
+	public String details(int cid,RedirectAttributes attr) {
+		System.out.println("cid: "+cid);
+		Champion c=CM.get_champion_detail_info(cid);
+		attr.addAttribute("cid",cid);
+//		attr.addAttribute("lane",lane);
+		attr.addAttribute("champion",c);
 		return "detail"; 
 	}
 	

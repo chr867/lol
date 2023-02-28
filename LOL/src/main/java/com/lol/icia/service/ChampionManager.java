@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lol.icia.dao.LolDao;
 import com.lol.icia.dto.Champion;
+import com.lol.icia.dto.Champion_counter;
 
 @Service
 public class ChampionManager {
@@ -31,6 +32,16 @@ private LolDao LD;
 	public List<Champion> get_champion_info_kda(String lane) {
 		List<Champion> c_info=LD.get_champion_info_kda(lane);
 		return c_info;
+	}
+
+	public List<Champion_counter> get_counter_up(int cid, String lane) {
+		List<Champion_counter> c=LD.get_counter_up(cid,lane);
+		return c;
+	}
+
+	public List<Champion_counter> get_counter_down(int cid, String lane) {
+		List<Champion_counter> c=LD.get_counter_down(cid,lane);
+		return c;
 	}
 
 }

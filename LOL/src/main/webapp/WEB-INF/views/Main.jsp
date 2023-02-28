@@ -12,6 +12,22 @@
 </head>
 
 <style>
+.catergory_box span{
+	position: relative;
+	left: 43%;
+}
+
+.catergory_box .category{
+	position: relative;
+	left: 8%;
+}
+
+
+.table_box{
+	margin-left:8%;
+	width:80%;
+}
+
 table th, td {
 	line-height: 120px;
 	width: 200px;
@@ -54,11 +70,12 @@ table th, td {
 }
 
 .box {
+	position : relative;
+	left:-2%;
 	width: 100%;
 	height: 50px;
 	margin: 0 10% 0 15%;
 	display : flex;
-	padding-right: 20%;
 }
 
 .sub_category {
@@ -83,16 +100,16 @@ table th, td {
 }
 </style>
 <body>
-	<script src="https://code.jquery.com/jquery-3.6.3.js"
+<script src="https://code.jquery.com/jquery-3.6.3.js"
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-	<hr>
+<hr>
 	<!-- On tables -->
-	<div id="table_chart">
+<div id="table_chart">
+	<div class="catergory_box">
 		<span>라인별 픽률 0.5% 이상만 표시</span>
 		<div class="category">
 			<div class="top">탑</div>
@@ -101,7 +118,7 @@ table th, td {
 			<div class="adc">바텀</div>
 			<div class="sup">서폿</div>
 		</div>
-
+	</div>
 		<div class="box">
 			<div class = "sub_categor_box">
 			<span class="sub_category">승률</span>
@@ -110,11 +127,11 @@ table th, td {
 			</div>
 		</div>
 
-
+	<div class="table_box">
 		<table class="table table-hover">
 		</table>
-		
-	</div>
+	</div>	
+</div>
 
 
 

@@ -11,7 +11,7 @@
 <mapper namespace="com.lol.icia.dao.LolDao">
 
 	<select id="get_champion_info" resultType="champion">
-		SELECT ${lane}_wpk.CID, ${lane}_wpk.CN_EG, ${lane}_wpk.CN_KR, ${lane}_wpk.winrate, ${lane}_wpk.pickrate, ${lane}.kda
+		SELECT ${lane}_wpk.CID, ${lane}_wpk.CN_EG, ${lane}_wpk.CN_KR, ${lane}_wpk.lane, ${lane}_wpk.winrate, ${lane}_wpk.pickrate, ${lane}.kda
 		FROM ${lane}_wpk join ${lane}kda ${lane}
 		ON ${lane}_wpk.CN_KR = ${lane}.CN_KR
 		ORDER BY ${lane}_wpk.pickrate desc

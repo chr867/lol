@@ -5,38 +5,109 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
 
 <style>
-table th,td{
+table th, td {
 	line-height: 120px;
-	width : 200px;
+	width: 200px;
 }
- </style>
+
+#table_chart {
+	margin: 50px 0 0 0;
+}
+
+.title {
+	font-size: 20px;
+	color: black;
+	margin: 35px 5px 0 50%;
+}
+
+.sub_title {
+	font-size: 12px;
+	color: grey;
+}
+
+.category {
+	background-color: darkblue;
+	margin: 5px 10% 10px 15%;
+	width: 1000px;
+	height: 50px;
+	border-radius: 10px;
+}
+
+.top, .jungle, .mid, .adc, .sup {
+	color: white;
+	background-color: blue;
+	width: 80px;
+	height: 30px;
+	margin: 10px 5% 10px 6.5%;
+	text-align: center;
+	line-height: 25px;
+	float: left;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.box {
+	width: 100%;
+	height: 50px;
+	margin: 0 10% 0 15%;
+	display : flex;
+	padding-right: 20%;
+}
+
+.sub_category {
+	text-align: center;
+	background-color: blue;
+	/* display : flex; */
+	color: white;
+	width: 60px;
+	height: 30px;
+	font-size : 20px;
+	margin : 0 100px 0 0;
+	line-height: 30px;
+	border-radius: 4px;
+}
+
+.sub_categor_box{
+	width: auto;
+	justify-content:flex-end;
+	display : flex;
+	margin : 0 0 0 60%;
+}
+</style>
 <body>
-<script src="https://code.jquery.com/jquery-3.6.3.js"
-	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-	crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.3.js"
+		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 	<hr>
 	<!-- On tables -->
 	<div id="table_chart">
-		 <span>라인별 픽률 0.5% 이상만 표시</span>
+		<span>라인별 픽률 0.5% 이상만 표시</span>
 		<div class="category">
 			<div class="top">탑</div>
 			<div class="jungle">정글</div>
 			<div class="mid">미드</div>
 			<div class="adc">바텀</div>
 			<div class="sup">서폿</div>
-	</div>
+		</div>
 
-	<div>
-		<div class="sub_category">승률</div>
-		<div class="sub_category">픽률</div>
-	</div>
+		<div class="box">
+			<div class = "sub_categor_box">
+			<span class="sub_category">승률</span>
+			<span class="sub_category">픽률</span>
+			<span class="sub_category">KDA</span>
+			</div>
+		</div>
 
 
 		<table class="table table-hover">
@@ -56,7 +127,7 @@ table th,td{
 
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	$('tr').click(function(){
 		console.log(this)
@@ -65,14 +136,14 @@ table th,td{
 	$.ajax({
 		method : 'get',
 		url : '/getinfo',
-		data : {lane:'t'}
+		data : {lane:'Top'}
 		}).done(res=>{
-			console.log(res)
+			console.log($(res).get().reverse())
 			let lanet='t';
 			let cList='<tbody>';
 			let i = 1;
 			for(champion of res){
-				cList += '<tr height="20" align="center" onclick="detail()">'
+				cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
 				cList += '<th align="center">'+i+'</th>'
 				cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 				cList += '<td align="center">'+champion.cn_kr+'</td>'
@@ -85,9 +156,144 @@ table th,td{
 			$('.table').html(cList);
 		})
 		
-	function detail(){
-		location.href="/detail/?cid=168&lane=t"	
-	}		
+		$('.top').click(function(){
+		$.ajax({
+			method : 'get',
+			url : '/getinfo',
+			data : {lane:'Top'}
+		}).done(res=>{
+			let cList='<tbody>';
+			let i = 1;
+				for(champion of res){
+					cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
+					cList += '<td align="center">'+i+'</td>'
+					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
+					cList += '<td align="center">'+champion.cn_kr+'</td>'
+					cList += '<td align="center">'+champion.winrate+'</td>'
+					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.kda+'</td>'
+					cList += '</tr>'
+					i++
+				}
+				cList+='</tbody>';
+				$('.table').html(cList);
+		}).fail(err=>{
+			console.log(err)
+		})
+	})
+	
+	$('.jungle').click(function(){
+		$.ajax({
+			method : 'get',
+			url : '/getinfo',
+			data : {lane:'Jungle'}
+		}).done(res=>{
+			console.log("jungle res:",res);
+			let cList='<tbody>';
+			let i = 1;
+				for(champion of res){
+					cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
+					cList += '<td align="center">'+i+'</td>'
+					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
+					cList += '<td align="center">'+champion.cn_kr+'</td>'
+					cList += '<td align="center">'+champion.winrate+'</td>'
+					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.kda+'</td>'
+					cList += '</tr>'
+					i++
+				}
+				cList+='</tbody>';
+				$('.table').html(cList);
+		}).fail(err=>{
+			console.log(err)
+		})
+	})
+	
+	$('.mid').click(function(){
+		$.ajax({
+			method : 'get',
+			url : '/getinfo',
+			data : {lane:'MIDDLE'}
+		}).done(res=>{
+			let cList='<tbody>';
+			let i = 1;
+				for(champion of res){
+					cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
+					cList += '<td align="center">'+i+'</td>'
+					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
+					cList += '<td align="center">'+champion.cn_kr+'</td>'
+					cList += '<td align="center">'+champion.winrate+'</td>'
+					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.kda+'</td>'
+					cList += '</tr>'
+					i++
+				}
+				cList+='</tbody>';
+				$('.table').html(cList);
+		}).fail(err=>{
+			console.log(err)
+		})
+	})
+	
+	$('.adc').click(function(){
+		$.ajax({
+			method : 'get',
+			url : '/getinfo',
+			data : {lane:'Bot'}
+		}).done(res=>{
+			let cList='<tbody>';
+			let i = 1;
+				for(champion of res){
+					cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
+					cList += '<td align="center">'+i+'</td>'
+					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
+					cList += '<td align="center">'+champion.cn_kr+'</td>'
+					cList += '<td align="center">'+champion.winrate+'</td>'
+					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.kda+'</td>'
+					cList += '</tr>'
+					i++
+				}
+				cList+='</tbody>';
+				$('.table').html(cList);
+		}).fail(err=>{
+			console.log(err)
+		})
+	})
+	
+	$('.sup').click(function(){
+		$.ajax({
+			method : 'get',
+			url : '/getinfo',
+			data : {lane:'Supporter'}
+		}).done(res=>{
+			let cList='<tbody>';
+			let i = 1;
+				for(champion of res){
+					cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
+					cList += '<td align="center">'+i+'</td>'
+					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
+					cList += '<td align="center">'+champion.cn_kr+'</td>'
+					cList += '<td align="center">'+champion.winrate+'</td>'
+					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.kda+'</td>'
+					cList += '</tr>'
+					i++
+				}
+				cList+='</tbody>';
+				$('.table').html(cList);
+		}).fail(err=>{
+			console.log(err)
+		})
+	})
+	
+    function detail(champion){
+		let cid=champion.getAttribute("id")
+		let lane=champion.getAttribute("class")
+        location.href="/detail/?cid="+cid+"&lane="+lane
+    }        
+
+	
 
 </script>
 </body>

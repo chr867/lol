@@ -68,10 +68,11 @@ table th,td{
 		data : {lane:'t'}
 		}).done(res=>{
 			console.log(res)
+			let lanet='t';
 			let cList='<tbody>';
 			let i = 1;
 			for(champion of res){
-				cList += '<tr height="20" align="center" onclick="location.href=/detail?'+cid=champion.cid+'">'
+				cList += '<tr height="20" align="center" onclick="detail()">'
 				cList += '<th align="center">'+i+'</th>'
 				cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 				cList += '<td align="center">'+champion.cn_kr+'</td>'
@@ -84,6 +85,10 @@ table th,td{
 			$('.table').html(cList);
 		})
 		
+	function detail(){
+		location.href="/detail/?cid=168&lane=t"	
+	}		
+
 </script>
 </body>
 </html>

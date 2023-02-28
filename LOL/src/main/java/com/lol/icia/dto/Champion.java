@@ -13,6 +13,7 @@ public class Champion {
 	int cid;
 	String cn_eg;
 	String cn_kr;
+	String lane;
 	double winrate;
 	double pickrate;
 	double kda;

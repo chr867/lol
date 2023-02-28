@@ -21,6 +21,22 @@ public class RestChampionController {
 		return c_info;
 	}
 	
+	@GetMapping("/getinfo-winrate")
+	public List<Champion> winrate (String lane) {
+		System.out.println("lane: "+lane);
+		List<Champion> c_info = CM.get_champion_info_winrate(lane);
+		return c_info;
+	}
+	
+	@GetMapping("/getinfo-kda")
+	public List<Champion> kda (String lane) {
+		System.out.println("lane: "+lane);
+		List<Champion> c_info = CM.get_champion_info_kda(lane);
+		return c_info;
+	}
+	
+	
+	
 //	@GetMapping("/getdetail")
 //	public Champion detail (int cid,String lane) {
 //		Champion c=CM.get_champion_detail_info(cid,lane);

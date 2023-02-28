@@ -112,7 +112,7 @@ table th, td {
 
 
 		<table class="table table-hover">
-		</table>>
+		</table>
 		
 	</div>
 
@@ -120,16 +120,13 @@ table th, td {
 
 	<script type="text/javascript">
 
-	$('tr').click(function(){
-		console.log(this)
-	})
-
 	$.ajax({
 		method : 'get',
 		url : '/getinfo',
 		data : {lane:'Top'}
 		}).done(res=>{
-			console.log($(res).get().reverse())
+			let res_reverse=$(res).get().reverse()
+			console.log(res_reverse);
 			let lanet='t';
 			let cList='<tbody>';
 			let i = 1;
@@ -284,21 +281,113 @@ table th, td {
         location.href="/detail/?cid="+cid+"&lane="+lane
     }
 
+	
+	let reverse_switch_pickrate=true;
+	let reverse_switch_winrate=false;
+	let reverse_switch_kda=false;
+	
 	$('.sub_categor_box span').click(function(){
+		let _lane=$('tr').first().attr('class')
 		let align=$(this).text()
 		if(align=='승률'){
+			reverse_switch_pickrate=false;
+			reverse_switch_kda=false;
+			$.ajax({
+				method : 'get',
+				url : '/getinfo-winrate',
+				data : {lane:_lane}
+				}).done(res=>{
+					if(reverse_switch_winrate){
+					res=$(res).get().reverse()
+					reverse_switch_winrate=false;
+					}else{
+						reverse_switch_winrate=true;
+					}
+					let lanet='t';
+					let cList='<tbody>';
+					let i = 1;
+					for(champion of res){
+						cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
+						cList += '<th align="center">'+i+'</th>'
+						cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
+						cList += '<td align="center">'+champion.cn_kr+'</td>'
+						cList += '<td align="center">'+champion.winrate+'</td>'
+						cList += '<td align="center">'+champion.pickrate+'</td>'
+						cList += '<td align="center">'+champion.kda+'</td></tr>'
+						i++;
+					}
+					cList+='</tbody>';
+					$('.table').html(cList);
+				})
 			console.log('승률 클릭')
-			
 		}
 		if(align=='픽률'){
+			$.ajax({
+				method : 'get',
+				url : '/getinfo',
+				data : {lane:_lane}
+				}).done(res=>{
+					reverse_switch_winrate=false;
+					reverse_switch_kda=false;
+					if(reverse_switch_pickrate){
+					res=$(res).get().reverse()
+					reverse_switch_pickrate=false;
+					}else{
+						reverse_switch_pickrate=true;
+					}
+					let lanet='t';
+					let cList='<tbody>';
+					let i = 1;
+					for(champion of res){
+						cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
+						cList += '<th align="center">'+i+'</th>'
+						cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
+						cList += '<td align="center">'+champion.cn_kr+'</td>'
+						cList += '<td align="center">'+champion.winrate+'</td>'
+						cList += '<td align="center">'+champion.pickrate+'</td>'
+						cList += '<td align="center">'+champion.kda+'</td></tr>'
+						i++;
+					}
+					cList+='</tbody>';
+					$('.table').html(cList);
+				})
 			console.log('픽률 클릭')	
 		}
 		if(align=='KDA'){
+			$.ajax({
+				method : 'get',
+				url : '/getinfo-kda',
+				data : {lane:_lane}
+				}).done(res=>{
+					reverse_switch_pickrate=false;
+					reverse_switch_winrate=false;
+					if(reverse_switch_kda){
+					res=$(res).get().reverse()
+					reverse_switch_kda=false;
+					}else{
+						reverse_switch_kda=true;
+					}
+					let lanet='t';
+					let cList='<tbody>';
+					let i = 1;
+					for(champion of res){
+						cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
+						cList += '<th align="center">'+i+'</th>'
+						cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
+						cList += '<td align="center">'+champion.cn_kr+'</td>'
+						cList += '<td align="center">'+champion.winrate+'</td>'
+						cList += '<td align="center">'+champion.pickrate+'</td>'
+						cList += '<td align="center">'+champion.kda+'</td></tr>'
+						i++;
+					}
+					cList+='</tbody>';
+					$('.table').html(cList);
+				})
 			console.log('KDA 클릭')	
 		}
 		
 	})
-
+	
 </script>
 </body>
 </html>

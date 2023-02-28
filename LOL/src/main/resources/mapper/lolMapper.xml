@@ -17,6 +17,20 @@
 		ORDER BY ${lane}_wpk.pickrate desc
 	</select>
 	
+	<select id="get_champion_info_winrate" resultType="champion">
+		SELECT ${lane}_wpk.CID, ${lane}_wpk.CN_EG, ${lane}_wpk.CN_KR, ${lane}_wpk.lane, ${lane}_wpk.winrate, ${lane}_wpk.pickrate, ${lane}.kda
+		FROM ${lane}_wpk join ${lane}kda ${lane}
+		ON ${lane}_wpk.CN_KR = ${lane}.CN_KR
+		ORDER BY ${lane}_wpk.winrate desc
+	</select>
+	
+	<select id="get_champion_info_kda" resultType="champion">
+		SELECT ${lane}_wpk.CID, ${lane}_wpk.CN_EG, ${lane}_wpk.CN_KR, ${lane}_wpk.lane, ${lane}_wpk.winrate, ${lane}_wpk.pickrate, ${lane}.kda
+		FROM ${lane}_wpk join ${lane}kda ${lane}
+		ON ${lane}_wpk.CN_KR = ${lane}.CN_KR
+		ORDER BY ${lane}_wpk.kda desc
+	</select>
+	
 	<select id="get_champion_detail_info" resultType="champion">
 		SELECT * FROM ${lane}_wpk
 		WHERE CID = ${cid}

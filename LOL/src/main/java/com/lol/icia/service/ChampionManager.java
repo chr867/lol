@@ -23,4 +23,14 @@ private LolDao LD;
 		return c;
 	}
 
+	public List<Champion> get_champion_info_winrate(String lane) {
+		List<Champion> c_info=LD.get_champion_info_winrate(lane);
+		return c_info;
+	}
+
+	public List<Champion> get_champion_info_kda(String lane) {
+		List<Champion> c_info=LD.get_champion_info_kda(lane);
+		return c_info;
+	}
+
 }

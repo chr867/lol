@@ -13,4 +13,8 @@ public interface LolDao {
 	List<Champion> get_champion_info(String lane);
 
 	Champion get_champion_detail_info(@Param("cid")int cid , @Param("lane") String lane);
+
+	List<Champion> get_champion_info_winrate(String lane);
+
+	List<Champion> get_champion_info_kda(String lane);
 }

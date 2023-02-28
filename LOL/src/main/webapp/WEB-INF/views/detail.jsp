@@ -12,18 +12,15 @@
 	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 	crossorigin="anonymous"></script>
 
-<h1>detail.jsp</h1>
 <div>
 <img id="img" alt="#" src="">
 <p>${champion.cn_kr}</p>
-</div>
 
-
+<!-- </div>
 	<form method = "get" action="detail">
 	</form>
 	<div class = "chart">
-	
-	</div>
+</div> -->
 </body>
 
 <script type="text/javascript">
@@ -32,7 +29,7 @@
 	console.log(cn_eg)
 	$('#img').attr('src','https://ddragon.leagueoflegends.com/cdn/10.6.1/img/champion/'+cn_eg+'.png')
 	
-	google.charts.load('current', {'packages' : ['corechart']});
+	/* google.charts.load('current', {'packages' : ['corechart']});
 	google.charts.setOnLoadCallback(drawVisualization);
 	
 	function drawVisualization(){
@@ -42,7 +39,7 @@
 		]);
 		
 		let options = {
-				title : '${champion.cn_eg}' + "통계",
+				title : '${champion.cn_kr}' + " 통계",
 				vAxis : {title : ''},
 				hAxis : {title : ''},
 				seriesType : 'bars',
@@ -50,7 +47,7 @@
 		
 		let chart = new google.visualization.ComboChart(document.querySelector('.chart'));
 		chart.draw(win_data, options);
-	}
+	} */
 	
 	
 </script>

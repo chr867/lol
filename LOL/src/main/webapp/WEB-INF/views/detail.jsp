@@ -8,12 +8,17 @@
 <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+	crossorigin="anonymous"></script>
+
 <h1>detail.jsp</h1>
-${champion.cn_eg}
-${champion.cn_kr }
-${champion.winrate }
-${champion.pickrate }
-${champion.lane }
+<div>
+<img id="img" alt="#" src="">
+<p>${champion.cn_kr}</p>
+</div>
+
+
 	<form method = "get" action="detail">
 	</form>
 	<div class = "chart">
@@ -22,6 +27,10 @@ ${champion.lane }
 </body>
 
 <script type="text/javascript">
+	//console.log($('#img'))
+	let cn_eg='${champion.cn_eg}'
+	console.log(cn_eg)
+	$('#img').attr('src','https://ddragon.leagueoflegends.com/cdn/10.6.1/img/champion/'+cn_eg+'.png')
 	
 	google.charts.load('current', {'packages' : ['corechart']});
 	google.charts.setOnLoadCallback(drawVisualization);

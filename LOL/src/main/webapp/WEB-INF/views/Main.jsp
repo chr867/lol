@@ -69,16 +69,17 @@ table th, td {
 	width: 60px;
 	height: 30px;
 	font-size : 20px;
-	margin : 0 100px 0 0;
+	margin : 0 280px 0 0;
 	line-height: 30px;
 	border-radius: 4px;
 }
 
 .sub_categor_box{
+
 	width: auto;
 	justify-content:flex-end;
 	display : flex;
-	margin : 0 0 0 60%;
+	margin : 0 0 0 50%;
 }
 </style>
 <body>
@@ -111,18 +112,8 @@ table th, td {
 
 
 		<table class="table table-hover">
-
-		</table>
-		<!-- <span class="title">통계</span>
-		<div class="category">
-			<div class="position_btn">탑</div>
-			<div class="position_btn">정글</div>
-			<div class="position_btn">미드</div>
-			<div class="position_btn">바텀</div>
-			<div class="position_btn">서폿</div>
-			<div class="position_btn">전체</div>
-		</div> -->
-
+		</table>>
+		
 	</div>
 
 
@@ -291,9 +282,22 @@ table th, td {
 		let cid=champion.getAttribute("id")
 		let lane=champion.getAttribute("class")
         location.href="/detail/?cid="+cid+"&lane="+lane
-    }        
+    }
 
-	
+	$('.sub_categor_box span').click(function(){
+		let align=$(this).text()
+		if(align=='승률'){
+			console.log('승률 클릭')
+			
+		}
+		if(align=='픽률'){
+			console.log('픽률 클릭')	
+		}
+		if(align=='KDA'){
+			console.log('KDA 클릭')	
+		}
+		
+	})
 
 </script>
 </body>

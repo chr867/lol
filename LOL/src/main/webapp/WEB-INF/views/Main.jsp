@@ -12,6 +12,14 @@
 </head>
 
 <style>
+body{
+z-index: -1
+}
+
+tr,span{
+cursor: pointer;
+}
+
 .catergory_box span{
 	position: relative;
 	left: 43%;
@@ -142,8 +150,7 @@ table th, td {
 		url : '/getinfo',
 		data : {lane:'Top'}
 		}).done(res=>{
-			let res_reverse=$(res).get().reverse()
-			console.log(res_reverse);
+
 			let lanet='t';
 			let cList='<tbody>';
 			let i = 1;

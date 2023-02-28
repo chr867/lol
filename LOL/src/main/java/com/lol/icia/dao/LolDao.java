@@ -1,6 +1,7 @@
 package com.lol.icia.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,4 +23,6 @@ public interface LolDao {
 	List<Champion_counter> get_counter_up(@Param("cid")int cid , @Param("lane") String lane);
 
 	List<Champion_counter> get_counter_down(@Param("cid")int cid , @Param("lane") String lane);
+
+	Champion_counter get_relative_record(@Param("cid")int cid , @Param("lane") String lane, @Param("e_id")int e_id);
 }

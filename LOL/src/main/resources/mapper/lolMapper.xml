@@ -111,7 +111,38 @@
 		ORDER BY t1.cname) a2
 		on a1.name1 = a2.name1
 		WHERE round(a1.cnt/a2.cnt*100,2)<50
-		order by winrate desc
+		order by winrate
+		]]>
+	</select>
+	
+		<select id="get_relative_record" resultType="counter">
+			<![CDATA[
+		select a1.lane, a1.name2 champ, a1.id2 c_id, a1.cnt win,a2.cnt
+		match,round(a1.cnt/a2.cnt*100,2) as winrate, a1.name1 enemy, a1.cn_eg, a1.id1
+		e_id
+		from
+		(SELECT t2.lane, t2.championid id2, t2.cname name2, t1.cn_eg, COUNT(*) AS CNT, T2.WIN
+		win2, t1.championid id1, t1.cname name1
+		FROM (SELECT GAMEID,rc.cn_kr AS CNAME, WIN, LANE, rc.CHAMPIONID, rc.cn_eg
+		FROM RC where championid=${e_id}) T1 
+		INNER JOIN (SELECT GAMEID,rc.cn_kr AS CNAME, WIN, LANE, rc.CHAMPIONID
+		FROM RC where championid=${cid}) T2 
+		ON T1.GAMEID = T2.GAMEID AND T1.LANE = T2.LANE
+		WHERE T1.LANE=#{lane} AND t1.cname<>t2.cname and t2.win = 'True'
+		GROUP BY t2.cname, T2.WIN, t2.lane, t1.cname, t2.championid, t1.championid, t1.cn_eg
+		ORDER BY t1.cname) a1 
+		join
+		(SELECT COUNT(*) AS CNT, t1.CHAMPIONID id,t1.cname name1
+		FROM (SELECT GAMEID,rc.cn_kr AS CNAME, WIN, LANE, rc.CHAMPIONID
+		FROM RC where championid=${e_id}) T1 
+		INNER JOIN (SELECT GAMEID,rc.cn_kr AS CNAME, WIN, LANE, rc.CHAMPIONID
+		FROM RC where championid=${cid}) T2 
+		ON T1.GAMEID = T2.GAMEID AND T1.LANE = T2.LANE
+		WHERE T1.LANE=#{lane} AND t1.cname<>t2.cname
+		GROUP BY t2.cname, t2.lane, t1.cname, t1.CHAMPIONID
+		ORDER BY t1.cname) a2
+		on a1.name1 = a2.name1
+		order by winrate
 		]]>
 	</select>
 

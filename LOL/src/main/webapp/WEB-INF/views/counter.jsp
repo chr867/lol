@@ -21,6 +21,7 @@ body {
 	border-radius: 5px;
 	padding: 40px;
 	position: relative;
+	width: 70%;
 }
 
 #versus-top-container:before {
@@ -65,6 +66,7 @@ body {
 	font-size: 35px;
 	margin-top: 10%;
 	margin-bottom: 1.5%;
+	margin-left:10%;
 	font-weight: 700;
 	text-shadow: 2px 2px 2px gray;
 }

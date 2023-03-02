@@ -186,7 +186,7 @@ body {
 				<div class="col-md-4 col-xs-12 left-champion-info">
 					<div class="champion-info" onclick="move_champion()">
 						<img
-							src="//ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/${champion.cn_eg}.png"
+							src="//ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/${champion.cn_eg}.png"
 							alt="Champion Image" class="champion-image">
 
 					</div>
@@ -205,7 +205,7 @@ body {
 				<div class="col-md-4 col-xs-12 right-champion-info">
 					<div class="champion-info" onclick="move_enemy()">
 						<img
-							src="//ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/${enemy.cn_eg}.png"
+							src="//ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/${enemy.cn_eg}.png"
 							alt="Champion Image" class="champion-image">
 					</div>
 				</div>

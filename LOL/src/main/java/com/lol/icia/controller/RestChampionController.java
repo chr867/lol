@@ -49,11 +49,4 @@ public class RestChampionController {
 		return c_info;
 	}
 	
-	
-	
-//	@GetMapping("/getdetail")
-//	public Champion detail (int cid,String lane) {
-//		Champion c=CM.get_champion_detail_info(cid,lane);
-//		return c;
-//	}
 }

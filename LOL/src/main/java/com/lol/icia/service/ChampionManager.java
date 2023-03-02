@@ -20,11 +20,6 @@ private LolDao LD;
 		return c_info;
 	}
 
-//	public Champion get_champion_detail_info(int cid,String lane) {
-//		Champion c=LD.get_champion_detail_info(cid,lane);
-//		return c;
-//	}
-	
 	public Champion get_champion_detail_info(int cid,String lane) {
 		Champion c=LD.get_champion_detail_info(cid,lane);
 		return c;

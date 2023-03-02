@@ -42,6 +42,7 @@ body {
 
 .left-champion-info, .right-champion-info {
 	text-align: center;
+	cursor: pointer;
 }
 
 .champion-info img {
@@ -183,7 +184,7 @@ body {
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-12 left-champion-info">
-					<div class="champion-info">
+					<div class="champion-info" onclick="move_champion()">
 						<img
 							src="//ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/${champion.cn_eg}.png"
 							alt="Champion Image" class="champion-image">
@@ -202,13 +203,13 @@ body {
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-12 right-champion-info">
-					<div class="champion-info">
+					<div class="champion-info" onclick="move_enemy()">
 						<img
 							src="//ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/${enemy.cn_eg}.png"
 							alt="Champion Image" class="champion-image">
 					</div>
 				</div>
-				<div class="champion-stats">
+				<div class="champion-stats ">
 					<div class="stat">
 						승률<span class="value1">${enemy.winrate}</span>
 					</div>
@@ -222,6 +223,18 @@ body {
 	</section>
 
 	<script type="text/javascript">
+	function	move_champion(){
+		let cid=${champion.cid}
+		let lane='${champion.lane}'
+		location.href="/detail/?cid="+cid+"&lane="+lane		
+	}
+	
+	function move_enemy(){
+		let cid=${enemy.cid}
+		let lane='${enemy.lane}'
+		location.href="/detail/?cid="+cid+"&lane="+lane		
+	}
+		
 		$(function() {
 			if ($('.lane').html() === "Top") {
 				var image = new Image();

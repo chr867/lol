@@ -158,11 +158,10 @@ p {
 }
 
 #name {
-	width: 100px;
 	height: 30px;
 	position: relative;
 	left: -15%;
-	top: 60%;
+	top: 65%;
 }
 
 #w_p {

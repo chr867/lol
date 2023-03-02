@@ -7,21 +7,55 @@
 <title>Insert title here</title>
 </head>
 <style>
-    #versus-top-container {
-      background-color: #2040a9;
-      border-radius: 5px;
-      padding: 20px;
-      margin-bottom: 20px;
+
+   body{
+      height: 100vh;
+    background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.cn_eg}_0.jpg');
+    background-size: cover;
+      text-align: center;
+      
     }
-    
+    #versus-top-container {
+  margin: auto;
+  margin-top: 13%;
+  width: 1500px;
+  border-radius: 5px;
+  padding: 40px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+#versus-top-container:before {
+  content: "";
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://cdn.pixabay.com/photo/2014/06/15/22/36/pattern-369543_960_720.png');
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(10px);
+  z-index: -1;
+}
+
     .left-champion-info,
     .right-champion-info {
       text-align: center;
     }
 
     .champion-name,.versus-text {
+    width: 480px;
       color: #dedfe7;
-      font-size: 40px;
+      font-size: 30px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+    .lane{
+      width: 300px;
+      color: #dedfe7;
+      font-size: 25px;
       margin-top: 10px;
       margin-bottom: 5px;
       font-weight: 700;
@@ -38,16 +72,25 @@
       color: #828799;
       font-size: 18px;
     }
-
+    
     .title {
+    width: 160px;
       color: #7e9bff;
       font-weight: 800;
+      font-size: x-large;
       margin-right: 5px;
     }
 
     .value {
+    width: 160px;
       color: #dedfe7;
-      font-size: 30px;
+      font-size: 35px;
+      font-weight: 600;
+    }
+    .value1 {
+    width: 160px;
+      color: #dedfe7;
+      font-size: 25px;
       font-weight: 600;
     }
 
@@ -61,7 +104,7 @@
       width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
     }
 
@@ -102,15 +145,18 @@
 <body>
   <section id="versus-top-container">
     <div class="container-fluid">
+    <div class="row1">
+        <div class="lane">${champion.lane}</div>
+      </div>
       <div class="row1">
         <div class="champion-name">${champion.cn_kr}</div>
-        <div class="versus-text">VS</div>
+        <div class="versus-text" style="width: 60px">VS</div>
         <div class="champion-name">${enemy.cn_kr}</div>
       </div>
       <div class="row2">
         <div class="champion-stats">
-          <div class="stat" style="margin-right: 50px">승률<span class="value">${champion.winrate}</span> </div>
-          <div class="stat"><span class="stat">게임수</span> <span class="value">${champion_total}</span></div>
+          <div class="stat">승률<span class="value1">${champion.winrate}</span> </div>
+          <div class="stat"><span class="stat">표본수</span> <span class="value1">${champion_total}</span></div>
         </div>
         <div class="col-md-4 col-xs-12 left-champion-info">
           <div class="champion-info">
@@ -122,9 +168,9 @@
         <div class="col-md-4 col-xs-12 center-info">
 
           <div class="versus-stats">
-            <div class="versus-stat" style="margin-right: 50px;"><span class="title">상대 승률</span> <span
+            <div class="versus-stat"><span class="title">상대 승률</span> <span
                 class="value">${c.winrate}</span></div>
-            <div class="versus-stat"><span class="title">게임수</span> <span class="value">${c.match}</span></div>
+            <div class="versus-stat"><span class="title">표본수</span> <span class="value">${c.match}</span></div>
           </div>
         </div>
         <div class="col-md-4 col-xs-12 right-champion-info">
@@ -134,8 +180,8 @@
           </div>
         </div>
         <div class="champion-stats">
-          <div class="stat" style="margin-right: 50px">승률<span class="value">${enemy.winrate}</span> </div>
-          <div class="stat"><span class="stat">게임수</span> <span class="value">${enemy_total}</span></div>
+          <div class="stat">승률<span class="value1">${enemy.winrate}</span> </div>
+          <div class="stat"><span class="stat">표본수</span> <span class="value1">${enemy_total}</span></div>
         </div>
       </div>
 
@@ -143,7 +189,23 @@
   </section>
 
 <script type="text/javascript">
-
+$(function(){
+    if($('.lane').html()==="Top"){
+      $('.lane').html("탑")
+    }
+    if($('.lane').html()==="Middle"){
+      $('.lane').html("미드")
+    }
+    if($('.lane').html()==="Bot"){
+      $('.lane').html("바텀")
+    }
+    if($('.lane').html()==="Jungle"){
+      $('.lane').html("정글")
+    }
+    if($('.lane').html()==="Supporter"){
+      $('.lane').html("서폿")
+    }
+  });
 </script>
 </body>
 </html>

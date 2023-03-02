@@ -13,11 +13,16 @@
 
 <style>
 body{
-z-index: -1
+	background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99A30D4B5CB1538521') ;
+	background-repeat: no-repeat;
+	background-position:center;
+	background-size: cover;
+	color : white;
 }
 
-tr,span{
-cursor: pointer;
+tr{
+    background-color: rgba(235,87,87,0.5);
+    	cursor: pointer;
 }
 
 .catergory_box span{
@@ -33,9 +38,12 @@ cursor: pointer;
 .table_box{
 	margin-left:8%;
 	width:80%;
+	max-height: 800px;
+	overflow : scroll;
 }
 
-table th, td {
+table th, td {	
+	color:white;
 	line-height: 120px;
 	width: 200px;
 }
@@ -46,7 +54,6 @@ table th, td {
 
 .title {
 	font-size: 20px;
-	color: black;
 	margin: 35px 5px 0 50%;
 }
 
@@ -56,6 +63,7 @@ table th, td {
 }
 
 .category {
+	cursor: pointer;
 	background-color: darkblue;
 	margin: 5px 10% 10px 15%;
 	width: 1000px;
@@ -78,33 +86,32 @@ table th, td {
 
 .box {
 	position : relative;
-	left:-2%;
+	left:2%;
 	width: 100%;
 	height: 50px;
-	margin: 0 10% 0 15%;
+	margin: 0 10% 0 0;
 	display : flex;
 }
 
 .sub_category {
-	text-align: center;
-	background-color: blue;
-	/* display : flex; */
+	cursor : pointer;
+	text-align: center; 
 	color: white;
 	width: 60px;
 	height: 30px;
 	font-size : 20px;
-	margin : 0 280px 0 0;
+	margin : 0 190px 0 0;
 	line-height: 30px;
 	border-radius: 4px;
 }
 
 .sub_categor_box{
-
 	width: auto;
 	justify-content:flex-end;
 	display : flex;
-	margin : 0 0 0 50%;
+	margin : 0 0 0 51%;
 }
+
 </style>
 <body>
 <script src="https://code.jquery.com/jquery-3.6.3.js"
@@ -126,6 +133,8 @@ table th, td {
 			<div class="sup">서폿</div>
 		</div>
 	</div>
+	
+	
 		<div class="box">
 			<div class = "sub_categor_box">
 			<span class="sub_category">승률</span>
@@ -137,7 +146,7 @@ table th, td {
 	<div class="table_box">
 		<table class="table table-hover">
 		</table>
-	</div>	
+	</div>
 </div>
 
 
@@ -156,8 +165,8 @@ table th, td {
 				cList += '<th align="center">'+i+'</th>'
 				cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 				cList += '<td align="center">'+champion.cn_kr+'</td>'
-				cList += '<td align="center">'+champion.winrate+'</td>'
-				cList += '<td align="center">'+champion.pickrate+'</td>'
+				cList += '<td align="center">'+champion.winrate+'%</td>'
+				cList += '<td align="center">'+champion.pickrate+'%</td>'
 				cList += '<td align="center">'+champion.kda+'</td></tr>'
 				i++;
 			}
@@ -176,8 +185,8 @@ table th, td {
 				for(champion of res){
 					cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
 					cList += '<td align="center">'+i+'</td>'
-					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champ+champion.cn_eg+'.png" alt="#"></td>'
-					cList += '<td align="center">'+champion.cn_kr+'</td>'ion/'
+					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
+					cList += '<td align="center">'+champion.cn_kr+'</td>'
 					cList += '<td align="center">'+champion.winrate+'</td>'
 					cList += '<td align="center">'+champion.pickrate+'</td>'
 					cList += '<td align="center">'+champion.kda+'</td>'

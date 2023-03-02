@@ -5,15 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 </head>
 
 <style>
+body{
+	color : white;
+	background-color: #191C2F;
+	z-index: -1
+}
+
 
 table th, td {
 	line-height: 120px;
 	width: 200px;
 	cursor : pointer;
+	color : white;
 }
 
 #counter_div{
@@ -32,7 +42,6 @@ table th, td {
 
 .title{
 	font-size : 22px;
-	
 }
 
 
@@ -41,28 +50,34 @@ table th, td {
 }
 
 h3{
+	color: white;
 	font-size : 25px;
-	color : blue;
 }
 </style>
+
 
 <body>
 <script src="https://code.jquery.com/jquery-3.6.3.js"
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 		crossorigin="anonymous"></script>
-   
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+		
    <div class="h3_div"><h3>${champion.cn_kr} 상대 챔피언</h3></div>
    
 	<div id="counter_div">
 		<div class = "section">
 			<div class = "title" style="color:red">상대하기 어려움</div>
-			<table id="counter">
+			<table id="counter" class="table table-striped">
+			
 			</table>
 		</div>
 		
 		<div class = "section">
-			<div class = "title" style="color:blue">상대하기 쉬움</div>
-			<table id="non_counter">
+			<div class = "title" style="color:#374AC9">상대하기 쉬움</div>
+			<table id="non_counter" class="table table-striped">
+			
 			</table>
 		</div>
 	</div>

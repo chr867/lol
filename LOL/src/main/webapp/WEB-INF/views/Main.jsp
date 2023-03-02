@@ -13,8 +13,8 @@
 
 <style>
 body{
-	background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99A30D4B5CB1538521') ;
-	background-repeat: no-repeat;
+	background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://cdn.pixabay.com/photo/2014/06/15/22/36/pattern-369543_960_720.png');
+ 	background-repeat: no-repeat;
 	background-position:center;
 	background-size: cover;
 	color : white;
@@ -38,8 +38,24 @@ tr{
 .table_box{
 	margin-left:8%;
 	width:80%;
-	max-height: 800px;
+	max-height: 700px;
 	overflow : scroll;
+	box-sizing: border-box;
+}
+
+.table_box::-webkit-scrollbar{
+    width: 6px;
+}
+
+.table_box::-webkit-scrollbar-thumb {
+    height: 17%;
+    background-color: rgba(255,255,255,1);
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;    
+}
+
+.table_box::-webkit-scrollbar-track{
+    background-color: rgba(0,0,0,0);
 }
 
 table th, td {	
@@ -63,33 +79,36 @@ table th, td {
 }
 
 .category {
-	cursor: pointer;
-	background-color: darkblue;
-	margin: 5px 10% 10px 15%;
-	width: 1000px;
-	height: 50px;
+	background-color: rgba(50,64,62,0.5);
+	width: 80%;
+	height: 80px;
 	border-radius: 10px;
+	display:flex;
+	justify-content: space-evenly;	
+	margin-bottom: 20px;
+	align-items: center;
 }
 
-.top, .jungle, .mid, .adc, .sup {
+.category div {
 	color: white;
-	background-color: blue;
+	font-size:25px;
 	width: 80px;
-	height: 30px;
-	margin: 10px 5% 10px 6.5%;
+	height:60px;
 	text-align: center;
-	line-height: 25px;
-	float: left;
-	border-radius: 8px;
+	line-height: 60px;
 	cursor: pointer;
 }
+
+.category div:hover{
+	background-color: rgba(50,64,62,1);
+}
+
 
 .box {
 	position : relative;
-	left:2%;
-	width: 100%;
 	height: 50px;
-	margin: 0 10% 0 0;
+    width: 80%;
+	margin: 0 10% 20px 7%;
 	display : flex;
 }
 
@@ -97,20 +116,33 @@ table th, td {
 	cursor : pointer;
 	text-align: center; 
 	color: white;
-	width: 60px;
-	height: 30px;
+	width: 120px;
+	height: 50px;
 	font-size : 20px;
-	margin : 0 190px 0 0;
-	line-height: 30px;
+	margin : 0 125px 0 0;
+	line-height: 50px;
 	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	background-color: rgba(50,64,62,0.5);
+}
+
+.sub_category:hover{
+	background-color: rgba(50,64,62,1);
 }
 
 .sub_categor_box{
-	width: auto;
+	width: 80%;
 	justify-content:flex-end;
 	display : flex;
-	margin : 0 0 0 51%;
+	margin : 0 0 0 55%;
+	box-sizing: border-box;
 }
+
+.sub_category_arrow{
+	width:20px;
+}
+
 
 </style>
 <body>
@@ -120,7 +152,6 @@ table th, td {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-<hr>
 	<!-- On tables -->
 <div id="table_chart">
 	<div class="catergory_box">
@@ -134,18 +165,19 @@ table th, td {
 		</div>
 	</div>
 	
-	
+	<div class="contents_box">
 		<div class="box">
 			<div class = "sub_categor_box">
-			<span class="sub_category">승률</span>
-			<span class="sub_category">픽률</span>
-			<span class="sub_category">KDA</span>
+			<div class="sub_category">승률</div>
+			<div id=pick_rate class="sub_category">픽률</div>
+			<div class="sub_category">KDA</div>
 			</div>
 		</div>
 
-	<div class="table_box">
-		<table class="table table-hover">
-		</table>
+		<div class="table_box">
+			<table class="table table-hover">
+			</table>
+		</div>
 	</div>
 </div>
 
@@ -158,6 +190,9 @@ table th, td {
 		url : '/getinfo',
 		data : {lane:'Top'}
 		}).done(res=>{
+			$('.sub_categor_box span').css('background-color','rgba(50,64,62,0.5)')
+			$('.top').css('background-color','rgba(50,64,62,1')
+			$('#pick_rate').css('background-color','rgba(50,64,62,1')
 			let cList='<tbody>';
 			let i = 1;
 			for(champion of res){
@@ -174,7 +209,11 @@ table th, td {
 			$('.table').html(cList);
 		})
 		
-		$('.top').click(function(){
+	$('.top').click(function(){
+		$('.category div').css('background-color','rgba(50,64,62,0)')
+		$('.sub_categor_box span').css('background-color','rgba(50,64,62,0.5)')
+		$(this).css('background-color','rgba(50,64,62,1')
+		$('#pick_rate').css('background-color','rgba(50,64,62,1')
 		$.ajax({
 			method : 'get',
 			url : '/getinfo',
@@ -187,8 +226,8 @@ table th, td {
 					cList += '<td align="center">'+i+'</td>'
 					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 					cList += '<td align="center">'+champion.cn_kr+'</td>'
-					cList += '<td align="center">'+champion.winrate+'</td>'
-					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.winrate+'%</td>'
+					cList += '<td align="center">'+champion.pickrate+'%</td>'
 					cList += '<td align="center">'+champion.kda+'</td>'
 					cList += '</tr>'
 					i++
@@ -201,12 +240,15 @@ table th, td {
 	})
 	
 	$('.jungle').click(function(){
+		$('.category div').css('background-color','rgba(50,64,62,0)')
+		$(this).css('background-color','rgba(50,64,62,1')
+		$('.sub_categor_box span').css('background-color','rgba(50,64,62,0.5)')
+		$('#pick_rate').css('background-color','rgba(50,64,62,1')
 		$.ajax({
 			method : 'get',
 			url : '/getinfo',
 			data : {lane:'Jungle'}
 		}).done(res=>{
-			console.log("jungle res:",res);
 			let cList='<tbody>';
 			let i = 1;
 				for(champion of res){
@@ -214,8 +256,8 @@ table th, td {
 					cList += '<td align="center">'+i+'</td>'
 					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 					cList += '<td align="center">'+champion.cn_kr+'</td>'
-					cList += '<td align="center">'+champion.winrate+'</td>'
-					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.winrate+'%</td>'
+					cList += '<td align="center">'+champion.pickrate+'%</td>'
 					cList += '<td align="center">'+champion.kda+'</td>'
 					cList += '</tr>'
 					i++
@@ -228,6 +270,10 @@ table th, td {
 	})
 	
 	$('.mid').click(function(){
+		$('.category div').css('background-color','rgba(50,64,62,0)')
+		$(this).css('background-color','rgba(50,64,62,1')
+		$('.sub_categor_box span').css('background-color','rgba(50,64,62,0.5)')
+		$('#pick_rate').css('background-color','rgba(50,64,62,1')
 		$.ajax({
 			method : 'get',
 			url : '/getinfo',
@@ -240,8 +286,8 @@ table th, td {
 					cList += '<td align="center">'+i+'</td>'
 					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 					cList += '<td align="center">'+champion.cn_kr+'</td>'
-					cList += '<td align="center">'+champion.winrate+'</td>'
-					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.winrate+'%</td>'
+					cList += '<td align="center">'+champion.pickrate+'%</td>'
 					cList += '<td align="center">'+champion.kda+'</td>'
 					cList += '</tr>'
 					i++
@@ -254,6 +300,10 @@ table th, td {
 	})
 	
 	$('.adc').click(function(){
+		$('.category div').css('background-color','rgba(50,64,62,0)')
+		$(this).css('background-color','rgba(50,64,62,1')
+		$('.sub_categor_box span').css('background-color','rgba(50,64,62,0.5)')
+		$('#pick_rate').css('background-color','rgba(50,64,62,1')
 		$.ajax({
 			method : 'get',
 			url : '/getinfo',
@@ -266,8 +316,8 @@ table th, td {
 					cList += '<td align="center">'+i+'</td>'
 					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 					cList += '<td align="center">'+champion.cn_kr+'</td>'
-					cList += '<td align="center">'+champion.winrate+'</td>'
-					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.winrate+'%</td>'
+					cList += '<td align="center">'+champion.pickrate+'%</td>'
 					cList += '<td align="center">'+champion.kda+'</td>'
 					cList += '</tr>'
 					i++
@@ -280,6 +330,10 @@ table th, td {
 	})
 	
 	$('.sup').click(function(){
+		$('.category div').css('background-color','rgba(50,64,62,0)')
+		$(this).css('background-color','rgba(50,64,62,1')
+		$('.sub_categor_box span').css('background-color','rgba(50,64,62,0.5)')
+		$('#pick_rate').css('background-color','rgba(50,64,62,1')
 		$.ajax({
 			method : 'get',
 			url : '/getinfo',
@@ -292,8 +346,8 @@ table th, td {
 					cList += '<td align="center">'+i+'</td>'
 					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 					cList += '<td align="center">'+champion.cn_kr+'</td>'
-					cList += '<td align="center">'+champion.winrate+'</td>'
-					cList += '<td align="center">'+champion.pickrate+'</td>'
+					cList += '<td align="center">'+champion.winrate+'%</td>'
+					cList += '<td align="center">'+champion.pickrate+'%</td>'
 					cList += '<td align="center">'+champion.kda+'</td>'
 					cList += '</tr>'
 					i++
@@ -316,10 +370,14 @@ table th, td {
 	let reverse_switch_winrate=false;
 	let reverse_switch_kda=false;
 	
-	$('.sub_categor_box span').click(function(){
+	$('.sub_categor_box div').click(function(){
 		let _lane=$('tr').first().attr('class')
 		let align=$(this).text()
+		console.log(align)
 		if(align=='승률'){
+			console.log()
+			$('.sub_categor_box div').css('background-color','rgba(50,64,62,0.5)');
+			$(this).css('background-color','rgba(50,64,62,1');
 			reverse_switch_pickrate=false;
 			reverse_switch_kda=false;
 			$.ajax({
@@ -340,17 +398,18 @@ table th, td {
 						cList += '<th align="center">'+i+'</th>'
 						cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 						cList += '<td align="center">'+champion.cn_kr+'</td>'
-						cList += '<td align="center">'+champion.winrate+'</td>'
-						cList += '<td align="center">'+champion.pickrate+'</td>'
+						cList += '<td align="center">'+champion.winrate+'%</td>'
+						cList += '<td align="center">'+champion.pickrate+'%</td>'
 						cList += '<td align="center">'+champion.kda+'</td></tr>'
 						i++;
 					}
 					cList+='</tbody>';
 					$('.table').html(cList);
 				})
-			console.log('승률 클릭')
 		}
 		if(align=='픽률'){
+			$('.sub_categor_box div').css('background-color','rgba(50,64,62,0.5)')
+			$(this).css('background-color','rgba(50,64,62,1')
 			$.ajax({
 				method : 'get',
 				url : '/getinfo',
@@ -371,17 +430,18 @@ table th, td {
 						cList += '<th align="center">'+i+'</th>'
 						cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 						cList += '<td align="center">'+champion.cn_kr+'</td>'
-						cList += '<td align="center">'+champion.winrate+'</td>'
-						cList += '<td align="center">'+champion.pickrate+'</td>'
+						cList += '<td align="center">'+champion.winrate+'%</td>'
+						cList += '<td align="center">'+champion.pickrate+'%</td>'
 						cList += '<td align="center">'+champion.kda+'</td></tr>'
 						i++;
 					}
 					cList+='</tbody>';
 					$('.table').html(cList);
 				})
-			console.log('픽률 클릭')	
 		}
 		if(align=='KDA'){
+			$('.sub_categor_box div').css('background-color','rgba(50,64,62,0.5)')
+			$(this).css('background-color','rgba(50,64,62,1')
 			$.ajax({
 				method : 'get',
 				url : '/getinfo-kda',
@@ -402,17 +462,15 @@ table th, td {
 						cList += '<th align="center">'+i+'</th>'
 						cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
 						cList += '<td align="center">'+champion.cn_kr+'</td>'
-						cList += '<td align="center">'+champion.winrate+'</td>'
-						cList += '<td align="center">'+champion.pickrate+'</td>'
+						cList += '<td align="center">'+champion.winrate+'%</td>'
+						cList += '<td align="center">'+champion.pickrate+'%</td>'
 						cList += '<td align="center">'+champion.kda+'</td></tr>'
 						i++;
 					}
 					cList+='</tbody>';
 					$('.table').html(cList);
 				})
-			console.log('KDA 클릭')	
 		}
-		
 	})
 	
 </script>

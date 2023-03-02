@@ -25,4 +25,10 @@ public interface LolDao {
 	List<Champion_counter> get_counter_down(@Param("cid")int cid , @Param("lane") String lane);
 
 	Champion_counter get_relative_record(@Param("cid")int cid , @Param("lane") String lane, @Param("e_id")int e_id);
+
+	int get_champion_total(@Param("rc_name1") String rc_name1, @Param("lane") String lane);
+
+	int get_enemy_total(@Param("rc_name1") String rc_name1, @Param("lane") String lane);
+
+	
 }

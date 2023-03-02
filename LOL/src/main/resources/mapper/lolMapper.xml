@@ -146,5 +146,21 @@
 		]]>
 	</select>
 
+	<select id="get_champion_total" resultType="Integer">
+	
+	SELECT TOTALWIN 
+	FROM TOTAL_WINRATE
+	WHERE RC_NAME1=#{rc_name1} AND LANE=#{lane}
+	
+	</select>
+	
+	<select id="get_enemy_total" resultType="Integer">
+	
+	SELECT TOTALWIN 
+	FROM TOTAL_WINRATE
+	WHERE RC_NAME1=#{rc_name1} AND LANE=#{lane}
+	
+	</select>
+
 
 </mapper>

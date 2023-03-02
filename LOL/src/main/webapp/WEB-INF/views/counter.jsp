@@ -14,6 +14,8 @@ ${champion.cn_kr}
 ${enemy.cn_kr}
 ${c.winrate}
 
+${champion_total}
+${enemy_total }
 <script type="text/javascript">
 
 </script>

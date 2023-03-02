@@ -35,12 +35,18 @@ public class HomeController {
 	}
 	
 	@GetMapping(value =  "/counter", produces = "application/json;charset=UTF-8" )
-	public @ResponseBody ModelAndView counter(int cid,String lane,int e_id, RedirectAttributes attr) {
+	public @ResponseBody ModelAndView counter(int cid,String lane,int e_id) {
 		Champion_counter c=CM.relative_record(cid,lane,e_id);
 		Champion champion = CM.get_champion_detail_info(cid, lane);
 		Champion enemy = CM.get_champion_detail_info(e_id, lane);
-
-		return new ModelAndView("counter").addObject("c",c).addObject("champion",champion).addObject("enemy",enemy);
+		int champion_total = CM.get_champion_total(champion.getCn_kr(),lane);
+		int enemy_total = CM.get_enemy_total(enemy.getCn_kr(),lane);
+		
+		return new ModelAndView("counter").addObject("c",c)
+				.addObject("champion",champion)
+				.addObject("enemy",enemy)
+				.addObject("champion_total",champion_total)
+				.addObject("enemy_total",enemy_total);
 	}
 	
 }

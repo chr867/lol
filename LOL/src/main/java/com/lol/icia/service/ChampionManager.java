@@ -55,4 +55,14 @@ private LolDao LD;
 		return c;
 	}
 
+	public int get_champion_total(String rc_name1, String lane) {
+		int total=LD.get_champion_total(rc_name1,lane);
+		return total;
+	}
+
+	public int get_enemy_total(String rc_name1, String lane) {
+		int total=LD.get_enemy_total(rc_name1,lane);
+		return total;
+	}
+
 }

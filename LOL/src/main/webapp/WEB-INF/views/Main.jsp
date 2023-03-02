@@ -30,7 +30,6 @@ cursor: pointer;
 	left: 8%;
 }
 
-
 .table_box{
 	margin-left:8%;
 	width:80%;
@@ -150,8 +149,6 @@ table th, td {
 		url : '/getinfo',
 		data : {lane:'Top'}
 		}).done(res=>{
-
-			let lanet='t';
 			let cList='<tbody>';
 			let i = 1;
 			for(champion of res){
@@ -179,8 +176,8 @@ table th, td {
 				for(champion of res){
 					cList += '<tr id="'+champion.cid+'" class="'+champion.lane+'" height="20" align="center" onclick="detail(this)">'
 					cList += '<td align="center">'+i+'</td>'
-					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/'+champion.cn_eg+'.png" alt="#"></td>'
-					cList += '<td align="center">'+champion.cn_kr+'</td>'
+					cList += '<td><img src="https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champ+champion.cn_eg+'.png" alt="#"></td>'
+					cList += '<td align="center">'+champion.cn_kr+'</td>'ion/'
 					cList += '<td align="center">'+champion.winrate+'</td>'
 					cList += '<td align="center">'+champion.pickrate+'</td>'
 					cList += '<td align="center">'+champion.kda+'</td>'
@@ -327,7 +324,6 @@ table th, td {
 					}else{
 						reverse_switch_winrate=true;
 					}
-					let lanet='t';
 					let cList='<tbody>';
 					let i = 1;
 					for(champion of res){
@@ -359,7 +355,6 @@ table th, td {
 					}else{
 						reverse_switch_pickrate=true;
 					}
-					let lanet='t';
 					let cList='<tbody>';
 					let i = 1;
 					for(champion of res){
@@ -391,7 +386,6 @@ table th, td {
 					}else{
 						reverse_switch_kda=true;
 					}
-					let lanet='t';
 					let cList='<tbody>';
 					let i = 1;
 					for(champion of res){

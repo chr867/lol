@@ -39,7 +39,6 @@ width: 50px;
    border-radius: 50%;
 }
 tr{
-   
    border-width : 1px;
    border-bottom : solid;
    border-bottom-color: initial;
@@ -64,7 +63,7 @@ tr{
 
 /* 스크롤바 뒷 배경 설정*/
 .section::-webkit-scrollbar-track {
-   background-color: rgb(55, 20, 20,0.8);
+   background-color: rgb(0, 0, 0,0);
 }
 
 #counter_div {
@@ -76,7 +75,7 @@ tr{
 
 .section {
 display: flex;
-width: 40%;
+width: 500px;
 
    text-align: center;
    max-height: 500px;
